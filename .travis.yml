@@ -1,0 +1,13 @@
+# .travis.yml !!!
+#tkornus/docker-react just the TAG for the image
+
+sudo: required
+services:
+  - docker
+
+
+before_install:
+  - docker build -t tkornus/docker-react -f Dockerfile.dev .
+
+  script:
+    - docker run -e CI=true tkornus/docker-react npm run test -- -- coverage
